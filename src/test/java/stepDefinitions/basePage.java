@@ -6,7 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import io.cucumber.java.en.*;
 import pageObject.sauceDemoPage;
 
-public class arangePriceByFilter {
+public class basePage {
 	WebDriver driver;
 	public sauceDemoPage sd;
 
@@ -54,7 +54,17 @@ public class arangePriceByFilter {
 		sd.getPriceWithFilter();
 	}
 
-	@Then("Close browse")
+	@Then("Get all product price without filter")
+	public void Get_all_product_price_without_filter() {
+		sd.getPriceWithoutFilter();
+	}
+
+	@Then("Logout from the portal")
+	public void Logout_from_the_portal() {
+		sd.logout();
+	}
+
+	@And("Close browse")
 	public void Close_browse() {
 		sd.close();
 	}

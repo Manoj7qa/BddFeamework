@@ -6,13 +6,13 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		features = "./Feature/testScript.feature",
+		features = "./Feature/testScript2.feature",
 		glue="stepDefinitions",
 		dryRun = false,
 		monochrome = true,
 		plugin = {"pretty","html:test-output"}
 		)
 
-public class runner {
+public class PriceWithoutFilter {
 	
 }

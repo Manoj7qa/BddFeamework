@@ -7,8 +7,7 @@ Feature: Title of your feature
     And Enter UN "standard_user" and PWD "secret_sauce"
     And Click on Login Button 
     Then Home Page title should be "Swag Labs"
-    And Apply filter
-    Then Get all product price
+    Then Get all product price without filter
     Then Logout from the portal
     Then Login Page title should be "Swag Labs"
     And Close browse

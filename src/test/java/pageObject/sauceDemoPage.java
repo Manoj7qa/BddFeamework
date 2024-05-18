@@ -4,6 +4,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
@@ -28,6 +29,10 @@ public class sauceDemoPage {
 	WebElement filter;
 	@FindBy(xpath = "//div[@class=\"inventory_item_price\"]")
 	WebElement price;
+	@FindBy(xpath = "//button[@id=\"react-burger-menu-btn\"]")
+	WebElement menuButton;
+	@FindBy(xpath = "//a[.='Logout']")
+	WebElement logoutButton;
 
 	public String getSauceDemoTitle() {
 		return ldriver.getTitle();
@@ -58,11 +63,25 @@ public class sauceDemoPage {
 	}
 
 	public void getPriceWithFilter() {
-		List<WebElement> ele = ldriver.findElements(By.xpath("//div[@class=\"inventory_item_price\"]"));
-		for (WebElement count : ele) {
+		List<WebElement> productPrices = ldriver.findElements(By.xpath("//div[@class=\"inventory_item_price\"]"));
+		for (WebElement count : productPrices) {
 			String st = count.getText();
 			System.out.println("Price of product  " + st);
 		}
+	}
+
+	public void getPriceWithoutFilter() {
+		List<WebElement> productPrices = ldriver.findElements(By.xpath("//div[@class=\"inventory_item_price\"]"));
+		String[] textArray = new String[productPrices.size()];
+		for (int i = 0; i < textArray.length; i++) {
+			String price = productPrices.get(i).getText();
+			System.out.println("Product " + (i + 1) + " price: " + price);
+		}
+	}
+	public void logout() {
+		menuButton.click();
+		Actions act = new Actions(ldriver);
+		act.click(logoutButton);
 	}
 
 	public void close() {
