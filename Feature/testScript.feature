@@ -1,6 +1,6 @@
 
 Feature: Title of your feature
- Scenario: Open Chrome Browser
+ Scenario: Filtering price with applying filter in application
     Given User Launch Chrome Browser
     When User open URL "https://www.saucedemo.com/"
     Then Login Page title should be "Swag Labs"

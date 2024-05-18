@@ -1,5 +1,6 @@
 package pageObject;
 
+
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -70,14 +71,33 @@ public class sauceDemoPage {
 		}
 	}
 
+	Float[] array = new Float[6];
+
 	public void getPriceWithoutFilter() {
 		List<WebElement> productPrices = ldriver.findElements(By.xpath("//div[@class=\"inventory_item_price\"]"));
 		String[] textArray = new String[productPrices.size()];
 		for (int i = 0; i < textArray.length; i++) {
 			String price = productPrices.get(i).getText();
-			System.out.println("Product " + (i + 1) + " price: " + price);
+			String q = price.replaceAll("[^\\d.-]", "");
+			Float a = Float.valueOf(q);
+			array[i] = a;
+		}
+
+		for (int p = 0; p < productPrices.size() - 1; p++) {
+			for (int q = 0; q < productPrices.size() - p - 1; q++) {
+				if (array[q] > array[q + 1]) {
+					Float temp = array[q];
+					array[q] = array[q + 1];
+					array[q + 1] = temp;
+				}
+
+			}
+		}
+		for (int w = 0; w < productPrices.size() - 1; w++) {
+			System.out.println("Product " + (w + 1) + " price: " + array[w]);
 		}
 	}
+
 	public void logout() {
 		menuButton.click();
 		Actions act = new Actions(ldriver);
